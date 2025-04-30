@@ -1,3 +1,18 @@
+## Este script será o ponto central para executar uma simulação integrada, instanciando os três sistemas (WMS, TMS, ERP) e orquestrando um fluxo de processo que passe por eles.
+
+# Neste exemplo, vamos simular o fluxo Order-to-Cash (Venda):
+
+Configuração: Criar instâncias do ERP, WMS, TMS e carregar dados mestres (produtos, clientes, fornecedores, transportadoras, localizações no armazém). O estoque inicial será carregado via uma simulação de Ordem de Compra no ERP e recebimento no WMS.
+ERP: Criar uma Ordem de Venda (OV).
+ERP -> WMS: O main script pega os dados da OV e instrui o WMS a realizar o picking dos itens.
+WMS -> ERP: O main script informa ao ERP que a separação foi concluída.
+ERP -> TMS: O main script pega os detalhes da OV (itens, destino) e instrui o TMS a criar e planejar uma Carga.
+TMS: O main script simula o despacho e a entrega da carga no TMS.
+TMS -> ERP: O main script informa ao ERP sobre a entrega e o custo do frete. O ERP atualiza o status da OV e registra os eventos financeiros.
+Verificação: Exibir logs e status finais para verificar o resultado.
+Pré-requisitos: Certifique-se de que os arquivos wms_simulator.py, tms_simulator.py, e erp_simulator.py estejam no mesmo diretório que este novo arquivo main_simulation.py.
+
+
 # -*- coding: utf-8 -*-
 
 # main_simulation.py
