@@ -1,20 +1,20 @@
-#Análise de Dados Logísticos Integrados: Otimização da Cadeia de Suprimentos com WMS, TMS e ERP.
+# Análise de Dados Logísticos Integrados: Otimização da Cadeia de Suprimentos com WMS, TMS e ERP.
 
-##Este repositório contém um projeto de Data Science dedicado à análise e otimização de operações logísticas através da integração e análise de dados provenientes de sistemas WMS (Warehouse Management System), TMS (Transportation Management System) e ERP (Enterprise Resource Planning).
+## Este repositório contém um projeto de Data Science dedicado à análise e otimização de operações logísticas através da integração e análise de dados provenientes de sistemas WMS (Warehouse Management System), TMS (Transportation Management System) e ERP (Enterprise Resource Planning).
 
 O objetivo principal é construir um pipeline de dados robusto e modelos analíticos que permitam extrair insights acionáveis para a melhoria contínua da cadeia de suprimentos.
 
-🎯 Objetivos
+## 🎯 Objetivos
 
-Consolidação de Dados: Desenvolver processos de ETL (Extract, Transform, Load) para unificar dados heterogêneos dos sistemas WMS, TMS e ERP em um Data Lake ou Data Warehouse centralizado.
-Análise Diagnóstica: Identificar gargalos, ineficiências e padrões nas operações de armazenagem (WMS), transporte (TMS) e planejamento de recursos (ERP).
-Análise Preditiva: Implementar modelos (potencialmente usando Machine Learning) para prever demandas, tempos de entrega, custos de frete e otimizar níveis de estoque.
-Otimização Prescritiva: Desenvolver algoritmos ou heurísticas para otimização de rotas (e.g., VRP - Vehicle Routing Problem), alocação de recursos no armazém e planejamento de capacidade.
-Monitoramento de KPIs: Calcular e visualizar Key Performance Indicators (KPIs) logísticos essenciais (e.g., OTD - On-Time Delivery, Custo por KM, Tempo de Ciclo do Pedido, Acurácia de Inventário, Utilização de Frota/Armazém).
+*   **Consolidação de Dados:** Desenvolver processos de ETL (Extract, Transform, Load) para unificar dados heterogêneos dos sistemas WMS, TMS e ERP em um Data Lake ou Data Warehouse centralizado.
+*   **Análise Diagnóstica:** Identificar gargalos, ineficiências e padrões nas operações de armazenagem (WMS), transporte (TMS) e planejamento de recursos (ERP).
+*   **Análise Preditiva:** Implementar modelos (potencialmente usando Machine Learning) para prever demandas, tempos de entrega, custos de frete e otimizar níveis de estoque.
+*   **Otimização Prescritiva:** Desenvolver algoritmos ou heurísticas para otimização de rotas (e.g., VRP - Vehicle Routing Problem), alocação de recursos no armazém e planejamento de capacidade.
+*   **Monitoramento de KPIs:** Calcular e visualizar Key Performance Indicators (KPIs) logísticos essenciais (e.g., OTD - On-Time Delivery, Custo por KM, Tempo de Ciclo do Pedido, Acurácia de Inventário, Utilização de Frota/Armazém).
 
-Visualização de Dados: Criar dashboards interativos para monitoramento em tempo real e suporte à decisão gerencial.
+*   **Visualização de Dados:** Criar dashboards interativos para monitoramento em tempo real e suporte à decisão gerencial.
 
-🛠️ Arquitetura e Metodologia
+## 🛠️ Arquitetura e Metodologia
 
 Extração de Dados: Conexão com as fontes de dados (Bancos de Dados SQL, APIs REST/SOAP, arquivos CSV/Excel) dos sistemas WMS, TMS e ERP. Scripts automatizados para coleta periódica.
 Transformação e Limpeza: Scripts em Python (utilizando bibliotecas como Pandas) para limpeza, padronização, tratamento de valores ausentes (missing values) e enriquecimento dos dados.
@@ -24,22 +24,22 @@ Modelagem e Análise: Desenvolvimento de modelos estatísticos e de Machine Lear
 Cálculo de KPIs: Lógica de negócio implementada em SQL ou Python para calcular os indicadores chave.
 Visualização: Construção de dashboards utilizando ferramentas como Power BI, Tableau, Looker, ou bibliotecas Python como Plotly Dash/Streamlit.
 
-💻 Tecnologias (Exemplo)
+## 💻 Tecnologias
 
-Linguagem: Python 3.x
-Bibliotecas Principais:
-pandas: Manipulação e análise de dados tabulares.
-numpy: Computação numérica.
-sqlalchemy / psycopg2 / pyodbc: Conexão com bancos de dados SQL.
-requests: Requisições HTTP para APIs.
-scikit-learn: Modelos de Machine Learning.
-statsmodels: Modelos estatísticos.
-matplotlib / seaborn / plotly: Visualização de dados estática e interativa.
-jupyter: Notebooks para desenvolvimento e exploração.
-Banco de Dados/DW (Exemplo): PostgreSQL / Google BigQuery
-Orquestração (Opcional): Apache Airflow / Prefect
-Visualização (Exemplo): Power BI / Streamlit
-Controle de Versão: Git / GitHub
+*   Linguagem: Python 3.x
+*   Bibliotecas Principais:
+*   pandas: Manipulação e análise de dados tabulares.
+*   numpy: Computação numérica.
+*   sqlalchemy / psycopg2 / pyodbc: Conexão com bancos de dados SQL.
+*   requests: Requisições HTTP para APIs.
+*   scikit-learn: Modelos de Machine Learning.
+*   statsmodels: Modelos estatísticos.
+*   matplotlib / seaborn / plotly: Visualização de dados estática e interativa.
+*   jupyter: Notebooks para desenvolvimento e exploração.
+*   Banco de Dados/DW (Exemplo): PostgreSQL / Google BigQuery
+*   Orquestração (Opcional): Apache Airflow / Prefect
+*   Visualização (Exemplo): Power BI / Streamlit
+*   Controle de Versão: Git / GitHub
 
 # Simulador WMS Avançado em Python
 
@@ -128,6 +128,8 @@ O código é organizado em classes que representam os principais conceitos do do
 * `Carga`: Representa a unidade de transporte. Contém origem, destino, uma lista de `ItemTransporte`, status, histórico de rastreamento e informações sobre a transportadora designada e custo estimado. Age como o agregado raiz (`Aggregate Root` no DDD).
 * `Transportadora`: Representa uma empresa de transporte com um modelo de custo básico.
 * `TMS`: A classe principal do sistema, agindo como orquestrador. Gerencia coleções de `Carga` e `Transportadora` e implementa os workflows de negócio (criar, planejar, despachar, entregar). Contém a lógica para simular distâncias e selecionar transportadoras.
+
+
 
 ### Pré-requisitos
 
