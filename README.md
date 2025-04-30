@@ -4,151 +4,186 @@
 
 O objetivo principal é construir um pipeline de dados robusto e modelos analíticos que permitam extrair insights acionáveis para a melhoria contínua da cadeia de suprimentos.
 
-## 🎯 Objetivos
+# Simulador Integrado de Logística (WMS, TMS, ERP) em Python
 
-*   **Consolidação de Dados:** Desenvolver processos de ETL (Extract, Transform, Load) para unificar dados heterogêneos dos sistemas WMS, TMS e ERP em um Data Lake ou Data Warehouse centralizado.
-*   **Análise Diagnóstica:** Identificar gargalos, ineficiências e padrões nas operações de armazenagem (WMS), transporte (TMS) e planejamento de recursos (ERP).
-*   **Análise Preditiva:** Implementar modelos (potencialmente usando Machine Learning) para prever demandas, tempos de entrega, custos de frete e otimizar níveis de estoque.
-*   **Otimização Prescritiva:** Desenvolver algoritmos ou heurísticas para otimização de rotas (e.g., VRP - Vehicle Routing Problem), alocação de recursos no armazém e planejamento de capacidade.
-*   **Monitoramento de KPIs:** Calcular e visualizar Key Performance Indicators (KPIs) logísticos essenciais (e.g., OTD - On-Time Delivery, Custo por KM, Tempo de Ciclo do Pedido, Acurácia de Inventário, Utilização de Frota/Armazém).
+## 📖 Descrição
 
-*   **Visualização de Dados:** Criar dashboards interativos para monitoramento em tempo real e suporte à decisão gerencial.
+Este projeto é um simulador educacional desenvolvido em Python que modela as interações básicas entre três sistemas cruciais na gestão da cadeia de suprimentos:
 
-## 🛠️ Arquitetura e Metodologia
+1.  **WMS (Warehouse Management System):** Sistema de Gerenciamento de Armazém
+2.  **TMS (Transportation Management System):** Sistema de Gerenciamento de Transporte
+3.  **ERP (Enterprise Resource Planning):** Sistema de Gestão Empresarial
 
-Extração de Dados: Conexão com as fontes de dados (Bancos de Dados SQL, APIs REST/SOAP, arquivos CSV/Excel) dos sistemas WMS, TMS e ERP. Scripts automatizados para coleta periódica.
-Transformação e Limpeza: Scripts em Python (utilizando bibliotecas como Pandas) para limpeza, padronização, tratamento de valores ausentes (missing values) e enriquecimento dos dados.
-Carga de Dados: Inserção dos dados processados em um ambiente analítico (e.g., PostgreSQL, BigQuery, Redshift, Snowflake) ou datalake (e.g., S3, ADLS).
-Análise Exploratória de Dados (EDA): Utilização de Jupyter Notebooks para explorar os dados, identificar correlações e gerar hipóteses.
-Modelagem e Análise: Desenvolvimento de modelos estatísticos e de Machine Learning (Regressão, Classificação, Clustering, Séries Temporais) com bibliotecas como Scikit-learn, Statsmodels, Prophet.
-Cálculo de KPIs: Lógica de negócio implementada em SQL ou Python para calcular os indicadores chave.
-Visualização: Construção de dashboards utilizando ferramentas como Power BI, Tableau, Looker, ou bibliotecas Python como Plotly Dash/Streamlit.
+O objetivo principal é fornecer uma ferramenta prática para aprender e visualizar como esses sistemas funcionam e se integram para gerenciar o fluxo de produtos e informações, desde a compra de matéria-prima até a entrega ao cliente final. O foco está na lógica dos processos logísticos e na troca de dados entre os sistemas.
 
-## 💻 Tecnologias
+Este projeto foi desenvolvido como parte de estudos em Análise e Desenvolvimento de Sistemas, com foco em Análise de Dados aplicada à Logística.
 
-*   Linguagem: Python 3.x
-*   Bibliotecas Principais:
-*   pandas: Manipulação e análise de dados tabulares.
-*   numpy: Computação numérica.
-*   sqlalchemy / psycopg2 / pyodbc: Conexão com bancos de dados SQL.
-*   requests: Requisições HTTP para APIs.
-*   scikit-learn: Modelos de Machine Learning.
-*   statsmodels: Modelos estatísticos.
-*   matplotlib / seaborn / plotly: Visualização de dados estática e interativa.
-*   jupyter: Notebooks para desenvolvimento e exploração.
-*   Banco de Dados/DW (Exemplo): PostgreSQL / Google BigQuery
-*   Orquestração (Opcional): Apache Airflow / Prefect
-*   Visualização (Exemplo): Power BI / Streamlit
-*   Controle de Versão: Git / GitHub
+## ✨ Conceitos Simulados
 
-# Simulador WMS Avançado em Python
+* **WMS:**
+    * Gerenciamento de Itens (SKUs) e Localizações de estoque (bins, prateleiras).
+    * Controle de inventário (quantidades por localização).
+    * Operações básicas de armazém: Recebimento, Armazenagem, Picking (Separação) e Expedição.
+    * Registro de movimentações de estoque.
+* **TMS:**
+    * Gerenciamento de Endereços (Origem/Destino).
+    * Criação de Cargas (Shipments) com itens, peso e volume.
+    * Gerenciamento de Transportadoras.
+    * Cálculo de frete simplificado (baseado em distância, peso, taxa).
+    * Simulação de distância entre localidades.
+    * Rastreamento de status da carga (Criada, Planejada, Em Trânsito, Entregue).
+* **ERP:**
+    * Gerenciamento de Dados Mestres: Produtos (com preço/custo), Clientes, Fornecedores.
+    * Ciclo de Vendas (Simplificado): Ordem de Venda -> Liberação WMS -> Confirmação TMS -> Faturamento.
+    * Ciclo de Compras (Simplificado): Ordem de Compra -> Confirmação WMS -> Liquidação.
+    * Visibilidade de Estoque (Quantidade e Valor Básico).
+    * Registro de Eventos Financeiros Chave (Receita, CMV, Custo de Frete, Entrada de Estoque).
+    * Gerenciamento do ciclo de vida (status) das ordens.
 
-## Descrição
+## 🚀 Funcionalidades Atuais
 
-Este projeto implementa um simulador de Sistema de Gerenciamento de Armazém (WMS - Warehouse Management System) em Python puro, utilizando conceitos de Programação Orientada a Objetos (OOP). O objetivo é modelar e simular as principais entidades e operações de um armazém, como gerenciamento de catálogo de itens, controle de localizações com capacidade, rastreamento de estoque por lotes (FIFO/LIFO), processamento de pedidos e persistência de dados.
+* Modelagem orientada a objetos para representar entidades do mundo real (Itens, Pedidos, Cargas, etc.).
+* Lógica básica para as operações de cada sistema (WMS, TMS, ERP).
+* Simulação de interações chave (ex: Ordem de Venda no ERP dispara picking no WMS, que dispara criação de carga no TMS).
+* Estrutura modular (cada sistema em seu próprio arquivo `.py`).
+* Exemplos de uso dentro de cada módulo (`if __name__ == "__main__":`) para demonstração.
+* Log de movimentações (WMS) e histórico de status (TMS, ERP).
+* Cálculos básicos de custo (frete no TMS, valor de estoque no ERP).
+* Uso de `Decimal` para cálculos financeiros no ERP.
 
-O simulador permite:
-*   Cadastrar itens (SKUs) com atributos como nome, descrição, volume e peso.
-*   Definir localizações no armazém com capacidades máximas baseadas em volume, peso ou quantidade.
-*   Rastrear o estoque em cada localização através de lotes, registrando a data/hora de entrada.
-*   Simular operações como recebimento, armazenagem (com estratégias), picking (separação baseada em FIFO/LIFO global ou por pedido) e expedição.
-*   Gerenciar pedidos de clientes, desde a criação até a expedição.
-*   Manter um log detalhado de todas as movimentações.
-*   Salvar e carregar o estado completo do armazém (catálogo, localizações, inventário, pedidos, logs) em um arquivo JSON, permitindo a continuidade entre execuções.
+## 🛠️ Tecnologias Utilizadas
 
-## Funcionalidades Principais
+* **Linguagem:** Python 3.x
+* **Bibliotecas:**
+    * `datetime` (para timestamps)
+    * `decimal` (para precisão monetária no ERP)
+    * `math` (para cálculos auxiliares)
+    * (Nenhuma biblioteca externa é necessária para a funcionalidade principal atual)
 
-*   **Gerenciamento de Catálogo:** Adição e consulta de itens (SKUs) com seus atributos.
-*   **Gerenciamento de Localizações:** Criação de locais com `id`, `capacidade_maxima` e `tipo_capacidade` (volume, peso, quantidade).
-*   **Controle de Inventário por Lotes:** O estoque em cada localização é rastreado por lotes (`Lote`), cada um com `quantidade` e `timestamp_entrada`.
-*   **Operações de Movimentação:**
-    *   **Recebimento:** Entrada de mercadorias em uma localização designada (ex: `RECEBIMENTO`).
-    *   **Armazenagem (`guardar_mercadoria`):** Movimentação de itens da origem para um local de estoque, utilizando estratégias como:
-        *   `PRIMEIRO_DISPONIVEL`: Primeiro local com capacidade encontrada.
-        *   `MENOR_OCUPACAO`: Local com menor ocupação relativa que comporte o item.
-        *   `EXISTENTE_SKU`: Prioriza locais que já contêm o mesmo SKU e têm capacidade.
-        Inclui lógica de *rollback* em caso de falha ao adicionar no destino.
-    *   **Picking (`fazer_picking`, `processar_picking_pedido`):** Coleta de itens do estoque para uma área de separação (ex: `PICKING_AREA`).
-        *   Suporta estratégias globais **FIFO** (First-In, First-Out) ou **LIFO** (Last-In, First-Out) ao buscar lotes no armazém.
-        *   Pode ser executado para um item específico ou para todos os itens de um `Pedido`.
-    *   **Expedição (`expedir_mercadoria`, `expedir_pedido`):** Saída de mercadorias do armazém, geralmente da área de picking/expedição.
-*   **Gerenciamento de Pedidos:**
-    *   Criação de `Pedido` com ID único, cliente e lista de itens/quantidades.
-    *   Ciclo de vida do pedido com `StatusPedido` (PENDENTE, EM_PICKING, PICKING_FALHOU, PICKING_COMPLETO, EXPEDIDO, CANCELADO).
-    *   Processamento de picking e expedição baseado em pedidos.
-*   **Validação e Tratamento de Erros:** Utiliza exceções customizadas (`WMSError`, `EstoqueInsuficienteError`, `CapacidadeExcedidaError`, etc.) para lidar com cenários como falta de estoque, capacidade excedida, itens/locais não encontrados.
-*   **Log de Movimentações:** Registra todas as operações significativas com timestamp, tipo, SKU, quantidade, origem, destino, lotes afetados e ID do pedido associado.
-*   **Persistência de Dados:** Salva o estado completo do WMS em um arquivo JSON (`armazem_estado.json` por padrão) e carrega automaticamente ao iniciar o script.
+## 📁 Estrutura do Projeto
 
-## Conceitos e Arquitetura
+/
+├── wms_simulator.py        # Código do Simulador WMS
+├── tms_simulator.py        # Código do Simulador TMS
+├── erp_simulator.py        # Código do Simulador ERP
+├── main_simulation.py      # (Opcional/Futuro) Script para orquestrar a simulação integrada
+└── README.md               # Este arquivo
 
-O código é estruturado em torno das seguintes classes principais:
+* Cada arquivo `*_simulator.py` contém as classes e a lógica para o respectivo sistema.
+* Os exemplos `if __name__ == "__main__":` dentro de cada arquivo permitem testar/demonstrar cada módulo individualmente.
+* Um arquivo `main_simulation.py` pode ser criado para instanciar os três sistemas e orquestrar um fluxo completo (ex: criar OV no ERP, que chama WMS, que chama TMS, etc.).
 
-1.  **`Item`**: Representa a definição de um tipo de produto (SKU), contendo `sku`, `nome`, `descricao`, `volume` e `peso`. Não armazena quantidade aqui.
-2.  **`Lote` (namedtuple)**: Representa uma quantidade específica de um SKU que entrou no estoque em um determinado momento. Contém `quantidade`, `timestamp_entrada` e `id_lote`. Usado para implementar FIFO/LIFO.
-3.  **`Localizacao`**: Modela um local físico no armazém (`id_local`). Armazena o inventário como um dicionário `{sku: [Lote, Lote, ...]}`. Gerencia a `capacidade_maxima` e o `tipo_capacidade`. Contém métodos para `adicionar_lote`, `remover_item` (baseado em estratégia FIFO/LIFO local), `verificar_estoque` e `verificar_capacidade`.
-4.  **`Pedido`**: Representa um pedido de cliente com `pedido_id`, `cliente`, `itens_solicitados` (dicionário `{sku: quantidade}`) e `status` (`StatusPedido`).
-5.  **`ArmazemWMS`**: Classe orquestradora principal. Gerencia o `catalogo_itens`, as `localizacoes`, os `pedidos` e o `log_movimentacoes`. Contém os métodos que implementam as operações WMS (receber, guardar, picking, expedir) e as lógicas de seleção de localização e lotes. Também lida com a persistência (`_salvar_estado`, `carregar_estado`).
-6.  **Exceções Customizadas**: Classes como `ItemNaoEncontradoError`, `EstoqueInsuficienteError`, etc., herdam de `WMSError` para sinalizar erros específicos da operação do WMS.
+## ⚙️ Instalação e Execução
 
-# Basic TMS Simulation in Python
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
+    cd SEU_REPOSITORIO
+    ```
+2.  **Pré-requisitos:** Certifique-se de ter o Python 3 instalado em seu sistema.
+3.  **Execução:**
+    * **Para executar os exemplos individuais de cada módulo:**
+        ```bash
+        python wms_simulator.py
+        python tms_simulator.py
+        python erp_simulator.py
+        ```
+    * **(Futuro) Para executar uma simulação integrada (se `main_simulation.py` for criado):**
+        ```bash
+        python main_simulation.py
+        ```
 
-Um projeto simples em Python que simula as funcionalidades centrais de um Transportation Management System (TMS). Este código demonstra o gerenciamento do ciclo de vida de uma carga, desde a criação até a entrega, incluindo a interação básica com transportadoras e um mecanismo de rastreamento.
+## 🎮 Como Usar (Exemplos Básicos)
 
-## Sobre o Projeto
+* **WMS:**
+    ```python
+    # Dentro de wms_simulator.py (exemplo)
+    from wms_simulator import ArmazemWMS, Item, Localizacao
 
-Este repositório contém um exemplo didático e funcional de como modelar e simular um sistema de gerenciamento de transporte (TMS) utilizando Programação Orientada a Objetos em Python. O objetivo é ilustrar os conceitos fundamentais envolvidos na orquestração do fluxo de cargas, desde sua origem até o destino, considerando características logísticas e a seleção de transportadoras.
+    armazem = ArmazemWMS("CD Principal")
+    item1 = Item("SKU001", "Produto A")
+    loc1 = Localizacao("A1-01")
+    armazem.adicionar_item_catalogo(item1)
+    armazem.adicionar_localizacao(loc1)
+    armazem.receber_mercadoria("SKU001", 100, "RECEBIMENTO")
+    armazem.guardar_mercadoria("SKU001", 100, "RECEBIMENTO", "A1-01")
+    armazem.inventario_geral()
+    ```
+* **TMS:**
+    ```python
+    # Dentro de tms_simulator.py (exemplo)
+    from tms_simulator import TMS, Transportadora, Endereco, ItemTransporte
 
-**Status Atual:** Simulação básica, focada na estrutura de dados e fluxo lógico.
+    tms = TMS()
+    t1 = Transportadora("T001", "Transportadora Veloz")
+    tms.adicionar_transportadora(t1)
+    origem = Endereco(...)
+    destino = Endereco(...)
+    item_carga = ItemTransporte("SKU001", 50, 0.5, 0.001)
+    carga = tms.criar_carga("CARGA01", origem, destino, [item_carga])
+    tms.planejar_transporte("CARGA01")
+    tms.consultar_carga("CARGA01")
+    ```
+* **ERP:**
+    ```python
+    # Dentro de erp_simulator.py (exemplo)
+    from erp_simulator import ERP, ProdutoERP, Cliente, Endereco
+    from decimal import Decimal
 
-## Funcionalidades Implementadas
+    erp = ERP("Minha Empresa")
+    prod1 = ProdutoERP("SKU001", "Produto A", preco_venda=Decimal('10.0'), custo_medio=Decimal('4.0'))
+    erp.adicionar_produto(prod1)
+    end_cli = Endereco(...)
+    cli1 = Cliente("C001", "Cliente Teste", "...", end_cli)
+    erp.adicionar_cliente(cli1)
+    ov = erp.criar_ordem_venda("OV001", "C001", [("SKU001", 10)]) # Cria OV e libera p/ WMS
+    erp.consultar_ov("OV001")
+    ```
 
-* **Modelagem de Entidades:** Definição de classes para representar Endereços, Itens de Transporte, Cargas e Transportadoras.
-* **Gerenciamento de Cargas:**
-    * Criação de novas cargas com origem, destino e lista de itens.
-    * Acompanhamento do status da carga (`CRIADA`, `PLANEJADA`, `EM_TRANSITO`, `ENTREGUE`, `CANCELADA`).
-    * Histórico de rastreamento detalhado a cada mudança de status.
-    * Cálculo agregado de peso e volume total da carga.
-* **Gerenciamento de Transportadoras:**
-    * Cadastro de transportadoras com taxas básicas.
-    * Cálculo de custo de frete estimado (modelo simplificado).
-* **Workflow do TMS:**
-    * **Planejamento:** Seleção automática da transportadora com menor custo estimado para uma carga (baseado em distância simulada e peso). Cálculo de data prevista de entrega simplificada.
-    * **Despacho:** Transição de status para `EM_TRANSITO`.
-    * **Registro de Entrega:** Transição de status para `ENTREGUE`.
-    * Consulta detalhada de cargas por ID.
-* **Simulação de Distância:** Mecanismo interno simples para simular a distância entre cidades (placeholder para futuras integrações de geolocalização/roteamento).
+## 🔗 Pontos de Integração (Conceitual)
 
-## Estrutura do Código
+A interação ideal entre os módulos segue fluxos como:
 
-O código é organizado em classes que representam os principais conceitos do domínio de transporte:
+1.  **Venda:** `ERP.criar_ordem_venda` -> `ERP.liberar_ov_para_wms` -> `WMS.receber_pedido_separacao` -> `WMS` (executa picking) -> `WMS.confirmar_expedicao` -> `ERP.receber_confirmacao_separacao_wms` -> `ERP.solicitar_transporte_tms` -> `TMS.criar_carga` -> `TMS.planejar_transporte` -> `TMS` (executa transporte) -> `TMS.registrar_entrega` -> `ERP.receber_confirmacao_entrega_tms` -> `ERP.faturar_ordem_venda`.
+2.  **Compra:** `ERP.criar_ordem_compra` -> `WMS.agendar_recebimento` (aguarda chegada) -> `WMS.receber_mercadoria` (confere c/ OC) -> `WMS.confirmar_recebimento` -> `ERP.receber_confirmacao_recebimento_wms` (atualiza estoque/OC) -> `ERP` (liquida OC).
 
-* `Endereco`: Representa um local geográfico com logradouro, número, cidade, estado e CEP.
-* `ItemTransporte`: Representa um item individual ou agrupamento de itens com o mesmo SKU, quantidade, peso e volume unitário. Inclui propriedades para calcular peso e volume totais do item.
-* `Carga`: Representa a unidade de transporte. Contém origem, destino, uma lista de `ItemTransporte`, status, histórico de rastreamento e informações sobre a transportadora designada e custo estimado. Age como o agregado raiz (`Aggregate Root` no DDD).
-* `Transportadora`: Representa uma empresa de transporte com um modelo de custo básico.
-* `TMS`: A classe principal do sistema, agindo como orquestrador. Gerencia coleções de `Carga` e `Transportadora` e implementa os workflows de negócio (criar, planejar, despachar, entregar). Contém a lógica para simular distâncias e selecionar transportadoras.
+A implementação atual define os métodos para essas interações, mas a orquestração completa idealmente ocorreria em um script `main_simulation.py`.
 
+## 📈 Melhorias Futuras (Roadmap)
 
+* [ ] **Interface de Usuário:** Criar uma interface de linha de comando (CLI) ou gráfica (GUI com Tkinter/PyQt) para interagir com a simulação.
+* [ ] **Persistência de Dados:** Salvar e carregar o estado da simulação (inventário, pedidos, cargas) em arquivos (JSON, CSV) ou banco de dados (SQLite).
+* [ ] **Lógica Avançada:**
+    * WMS: Estratégias de armazenagem (slotting), picking (FIFO/LIFO/FEFO), contagem cíclica.
+    * TMS: Roteirização (multi-stop), consolidação de cargas, gerenciamento de frota/veículos, cálculo de frete mais complexo (tabelas).
+    * ERP: Cálculo de Custo Médio Ponderado real, Disponibilidade para Promessa (ATP), relatórios financeiros/operacionais básicos.
+* [ ] **Integração Real:** Implementar a comunicação direta entre os objetos dos diferentes módulos em `main_simulation.py`.
+* [ ] **Análise de Dados:** Gerar e coletar dados da simulação para análise com Pandas (KPIs de estoque, transporte, vendas).
+* [ ] **Visualização:** Usar Matplotlib ou outras bibliotecas para visualizar dados (níveis de estoque, custos, etc.).
+* [ ] **Testes Unitários:** Adicionar testes para garantir a corretude da lógica.
 
-### Pré-requisitos
+## 🙌 Contribuições
 
-*   Python 3.7 ou superior (devido ao uso de `namedtuple` com type hints e f-strings avançadas).
-*   Nenhuma biblioteca externa é necessária além das incluídas na instalação padrão do Python (`json`, `datetime`, `os`, `uuid`, `enum`, `collections`).
+Contribuições são bem-vindas! Se você tiver sugestões, correções de bugs ou novas funcionalidades, sinta-se à vontade para abrir uma *Issue* ou enviar um *Pull Request*.
 
-### Instalação
+1.  Faça um *Fork* do projeto.
+2.  Crie uma *Branch* para sua feature (`git checkout -b feature/MinhaNovaFeature`).
+3.  Faça o *Commit* de suas alterações (`git commit -m 'Adiciona MinhaNovaFeature'`).
+4.  Faça o *Push* para a Branch (`git push origin feature/MinhaNovaFeature`).
+5.  Abra um *Pull Request*.
 
-Basta baixar o arquivo Python (`wms_simulator.py`, por exemplo).
+## 📄 Licença
 
-### Execução
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo `LICENSE` (você precisará criar um) para mais detalhes.
 
-Execute o script a partir do seu terminal:
+*(Sugestão: Crie um arquivo chamado LICENSE e cole o texto padrão da Licença MIT nele. Você pode encontrar o texto facilmente online.)*
 
-```bash
-python wms_simulator.py
+## 👤 Autor
 
-🤝 Contribuição
-Contribuições são bem-vindas! Por favor, leia as diretrizes de contribuição (se houver um arquivo CONTRIBUTING.md) antes de submeter pull requests. Issues podem ser abertas para reportar bugs ou sugerir novas funcionalidades.
+* **[Felipe Sampaio]**
+* **GitHub:** [https://github.com/oijiin](https://github.com/oijiin)
+* **(Opcional) LinkedIn:** [(https://www.linkedin.com/in/felipe-sampaio-5868b5165/)]
 
-📄 Licença
-Este projeto é licenciado sob a Licença [Nome da Licença - e.g., MIT]. Veja o arquivo LICENSE para mais detalhes.
+---
+
+*Este README foi gerado em: 30 de Abril de 2025.*
