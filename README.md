@@ -1,5 +1,6 @@
-Análise de Dados Logísticos Integrados: Otimização da Cadeia de Suprimentos com WMS, TMS e ERP
-Este repositório contém um projeto de Data Science dedicado à análise e otimização de operações logísticas através da integração e análise de dados provenientes de sistemas WMS (Warehouse Management System), TMS (Transportation Management System) e ERP (Enterprise Resource Planning).
+#Análise de Dados Logísticos Integrados: Otimização da Cadeia de Suprimentos com WMS, TMS e ERP.
+
+##Este repositório contém um projeto de Data Science dedicado à análise e otimização de operações logísticas através da integração e análise de dados provenientes de sistemas WMS (Warehouse Management System), TMS (Transportation Management System) e ERP (Enterprise Resource Planning).
 
 O objetivo principal é construir um pipeline de dados robusto e modelos analíticos que permitam extrair insights acionáveis para a melhoria contínua da cadeia de suprimentos.
 
