@@ -62,12 +62,14 @@ Este projeto foi desenvolvido como parte de estudos em Análise e Desenvolviment
 
 ## 📁 Estrutura do Projeto
 
+```bash
 /
 ├── wms_simulator.py        # Código do Simulador WMS
 ├── tms_simulator.py        # Código do Simulador TMS
 ├── erp_simulator.py        # Código do Simulador ERP
 ├── main_simulation.py      # (Opcional/Futuro) Script para orquestrar a simulação integrada
 └── README.md               # Este arquivo
+```
 
 * Cada arquivo `*_simulator.py` contém as classes e a lógica para o respectivo sistema.
 * Os exemplos `if __name__ == "__main__":` dentro de cada arquivo permitem testar/demonstrar cada módulo individualmente.
